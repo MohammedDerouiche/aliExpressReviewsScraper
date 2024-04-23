@@ -2,9 +2,10 @@
     <img src="https://logos-world.net/wp-content/uploads/2022/12/AliExpress-Logo.png" alt="AliExpress Logo" width="900">
 </div>
 
-# AliExpress Reviews Scraper
+# AliExpress Product Reviews Scraper
 
 This project is a Python-based web scraper designed to extract reviews and feedback from AliExpress. It uses proxy rotation to avoid rate-limiting and provides functionalities for handling CSV files, among other features.
+The .csv dataset resulted by this webscraper have several potential use cases like `EDA` and `Sentement Analysis` to Determine the overall sentiment from customer reviews. This can help gauge customer satisfaction, identify common issues, and understand product performance.
 
 ## Project Overview
 
@@ -29,6 +30,26 @@ This project employs the following skills, languages, and libraries:
   - `time`: For time-related operations.
 
 - **Skills**: Web scraping, proxy rotation, error handling, CSV file manipulation, conditional logic, and exception handling.
+
+## Extracted Features
+
+The web scraper collects a variety of features from AliExpress reviews, providing a comprehensive dataset for analysis. The extracted features include:
+
+- **buyerName**: The name or username of the buyer who submitted the review.
+- **buyerCountry**: The country where the buyer is located.
+- **Evaluation**: The overall evaluation or rating given by the buyer.
+- **buyerFeedback**: The general feedback or comments from the buyer.
+- **buyerProductFeedBack**: Specific feedback about the product.
+- **buyerTranslationFeedback**: Feedback related to translation (if applicable).
+- **downVoteCount**: The number of downvotes the review received.
+- **upVoteCount**: The number of upvotes the review received.
+- **evalData**: Additional data related to the evaluation.
+- **evaluationId**: The unique identifier for the evaluation.
+- **responsiveness**: The responsiveness rating for the product.
+- **warrantyService**: The warranty or service rating.
+- **functionality**: The functionality rating.
+- **status**: The status of the review.
+
 
 ## Prerequisites
 
