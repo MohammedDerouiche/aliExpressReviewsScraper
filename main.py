@@ -1,9 +1,9 @@
 import requests
 from requests.exceptions import ProxyError, ConnectTimeout, ConnectionError
-from bs4 import BeautifulSoup
 import random
 import csv
 import os
+import time
 
 def getHeaders():
     headers = {
@@ -80,10 +80,11 @@ def isProxyWorking(proxy):
 
 def requestData(productId, pageNumber, pageSize, numOfPages):
     for page in range(1, numOfPages):
+        print("Page"+ str(page))
         while True:
             try:
                 response = requests.get('https://feedback.aliexpress.com/pc/searchEvaluation.do', params=getParams(productId, pageNumber, pageSize), headers=getHeaders())
-                print("Request Succeed" + str(response.status_code))
+                print("Request Succeed: " + str(response.status_code))
             except (ProxyError, ConnectTimeout, ConnectionError):
                 print("Request failed")
                 continue
@@ -148,9 +149,11 @@ def requestData(productId, pageNumber, pageSize, numOfPages):
                 status = reveiw["status"]
             except:
                 status = None
-
+            print(buyerName)
             saveToCsv(buyerName, buyerCountry, Evaluation, buyerFeedback, buyerProductFeedBack, buyerTranslationFeedback, downVoteCount, upVoteCount, evalDate, evaluationId, responsiveness, warrantyService, functionality, status)
-
+            print("Data Saved Successfuly")
+        time.sleep(3)
+          
 def saveToCsv(buyerName, buyerCountry, Evaluation, buyerFeedback, buyerProductFeedBack, buyerTranslationFeedback, downVoteCount, upVoteCount, evalData, evaluationId, responsiveness, warrantyService, functionality, status):
     
     if not os.path.exists("Reviews.csv"):
@@ -165,10 +168,14 @@ def saveToCsv(buyerName, buyerCountry, Evaluation, buyerFeedback, buyerProductFe
 
 
 def main():
-    productId = input("Inter the product Id: ")
-    pageNumber = int(input("Inter the page number: "))
-    pageSize = int(input("Inter the page size: "))
-    numOfPages = int(input("Inter the number of pages: "))
+    # productId = input("Inter the product Id: ")
+    # pageNumber = int(input("Inter the page number: "))
+    # pageSize = int(input("Inter the page size: "))
+    # numOfPages = int(input("Inter the number of pages: "))
+    productId = "1005006074818290"
+    pageNumber = 1
+    pageSize = 50
+    numOfPages = 30
 
     requestData(productId, pageNumber, pageSize, numOfPages)
 
