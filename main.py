@@ -152,16 +152,15 @@ def requestData(productId, pageNumber, pageSize, numOfPages):
             saveToCsv(buyerName, buyerCountry, Evaluation, buyerFeedback, buyerProductFeedBack, buyerTranslationFeedback, downVoteCount, upVoteCount, evalDate, evaluationId, responsiveness, warrantyService, functionality, status)
 
 def saveToCsv(buyerName, buyerCountry, Evaluation, buyerFeedback, buyerProductFeedBack, buyerTranslationFeedback, downVoteCount, upVoteCount, evalData, evaluationId, responsiveness, warrantyService, functionality, status):
-
-    # Open the file in append mode
-    with open("Reviews.csv", 'a', newline='', encoding='utf-8') as csvfile:
-        csv_writer = csv.writer(csvfile)
-
-        # If the file doesn't exist, write the headers first
-        if not os.path.exists("Reviews.csv"):
+    
+    if not os.path.exists("Reviews.csv"):
+        # Open the file in append mode
+        with open("Reviews.csv", 'a', newline='', encoding='utf-8') as csvfile:
+            csv_writer = csv.writer(csvfile,delimiter="|")  
             csv_writer.writerow(['buyerName', 'buyerCountry', 'Evaluation', 'buyerFeedback', 'buyerProductFeedBack', 'buyerTranslationFeedback', 'downVoteCount', 'upVoteCount', 'evalData', 'evaluationId', 'responsiveness', 'warrantyService', 'functionality', 'status'])
-
+    with open("Reviews.csv", 'a', newline='', encoding='utf-8') as csvfile:
         # Write the data to the CSV file
+        csv_writer = csv.writer(csvfile, delimiter="|")
         csv_writer.writerow([buyerName, buyerCountry, Evaluation, buyerFeedback, buyerProductFeedBack, buyerTranslationFeedback, downVoteCount, upVoteCount, evalData, evaluationId, responsiveness, warrantyService, functionality, status])
 
 
