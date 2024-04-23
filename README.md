@@ -1,3 +1,7 @@
+<div style="display: flex; justify-content: center;">
+    <img src="https://logos-world.net/wp-content/uploads/2022/12/AliExpress-Logo.png" alt="AliExpress Logo" width="900">
+</div>
+
 # AliExpress Reviews Scraper
 
 This project is a Python-based web scraper designed to extract reviews and feedback from AliExpress. It uses proxy rotation to avoid rate-limiting and provides functionalities for handling CSV files, among other features.
