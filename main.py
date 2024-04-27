@@ -4,6 +4,7 @@ import random
 import csv
 import os
 import time
+from tqdm import tqdm
 
 def getHeaders():
     headers = {
@@ -79,11 +80,11 @@ def isProxyWorking(proxy):
         return False
 
 def requestData(productId, pageNumber, pageSize, numOfPages):
-    for page in range(1, numOfPages):
+    for page in tqdm(range(1, numOfPages+1), desc="progress"):
         print("Page"+ str(page))
         while True:
             try:
-                response = requests.get('https://feedback.aliexpress.com/pc/searchEvaluation.do', params=getParams(productId, pageNumber, pageSize), headers=getHeaders())
+                response = requests.get('https://feedback.aliexpress.com/pc/searchEvaluation.do', params=getParams(productId, page, pageSize), headers=getHeaders())
                 print("Request Succeed: " + str(response.status_code))
             except (ProxyError, ConnectTimeout, ConnectionError):
                 print("Request failed")
@@ -172,10 +173,10 @@ def main():
     # pageNumber = int(input("Inter the page number: "))
     # pageSize = int(input("Inter the page size: "))
     # numOfPages = int(input("Inter the number of pages: "))
-    productId = "1005006074818290"
+    productId = "1005005867163168"
     pageNumber = 1
     pageSize = 50
-    numOfPages = 30
+    numOfPages = 40
 
     requestData(productId, pageNumber, pageSize, numOfPages)
 
